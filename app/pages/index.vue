@@ -12,11 +12,11 @@ function addTask() {
 
 <template>
     <div class="flex flex-col items-center mt-8">
-        <BaseCard rounded="lg" class="flex justify-between gap-2 p-8">
+        <BaseCard rounded="lg" class="flex justify-between gap-2 p-2">
             <BaseInput v-model="input" type="text" placeholder="Crie uma tarefa aqui..." rounded="full" class="">
             </BaseInput>
-            <BaseButton @click="addTask" size="md" rounded="full" class="">
-                Criar tarefa 
+            <BaseButton @click="addTask" rounded="full" class="">
+                <Icon name="solar:add-circle-line-duotone" widht="24" height="24" /> 
             </BaseButton>
         </BaseCard>
         <BaseCard rounded="lg" class="w-full max-w-xl h-64 mt-2">

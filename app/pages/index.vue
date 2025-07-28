@@ -16,7 +16,7 @@ function addTask() {
             <BaseInput v-model="input" type="text" placeholder="Crie uma tarefa aqui..." rounded="full" class="">
             </BaseInput>
             <BaseButton @click="addTask" rounded="full" class="">
-                <Icon name="solar:add-circle-line-duotone" widht="24" height="24" /> 
+                <Icon name="solar:add-circle-line-duotone" width="24" height="24" /> 
             </BaseButton>
         </BaseCard>
         <BaseCard rounded="lg" class="w-full max-w-xl h-64 mt-2">

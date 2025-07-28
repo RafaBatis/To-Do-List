@@ -1,17 +1,17 @@
+<script setup lang="ts">
+const nuxtApp = useNuxtApp()
+</script>
+
 <template>
   <BaseProviders> 
-    <header>
-        <h1 class="text-3xl text-center font-bold underline">
-        To-Do List
-        </h1>
-    </header>
+    <BaseHeading as="h1" size="4xl" weight="semibold" lead="normal" class="flex items-center justify-center gap-2">
+      <Icon name="solar:bill-list-outline" />
+      To-Do List
+    </BaseHeading>
     <NuxtPage />
   </BaseProviders>
 </template>
 
-<script setup lang="ts">
-const nuxtApp = useNuxtApp()
-</script>
 
 
 

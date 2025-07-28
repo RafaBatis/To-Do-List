@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+const input = ref('')
+const tasks = ref<string[]>([])
+function addTask() {
+    if (input.value.trim() !== '') {
+        tasks.value.push(input.value.trim())
+        input.value = ''
+    }
+}
+</script>
+
 <template>
     <div class="flex flex-col items-center mt-8">
         <BaseCard rounded="lg" class="flex justify-between gap-2 p-8">
@@ -17,15 +29,3 @@
     </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
-const input = ref('')
-const tasks = ref<string[]>([])
-function addTask() {
-    if (input.value.trim() !== '') {
-        tasks.value.push(input.value.trim())
-        input.value = ''
-    }
-}
-
-</script>

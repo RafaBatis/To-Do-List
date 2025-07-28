@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center justify-center mt-8">
+    <div class="flex flex-col items-center mt-8">
         <BaseCard variant="default" rounded="lg" class="flex justify-between gap-2 p-8">
             <BaseInput v-model="value" type="text" placeholder="Crie uma tarefa aqui..." rounded="full" class="">
             </BaseInput>
@@ -18,8 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { BaseInput } from '#components';
-import { addTemplate } from 'nuxt/kit';
 import { ref } from 'vue'
 const value = ref('')
 const tasks = ref<string[]>([])

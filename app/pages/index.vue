@@ -8,6 +8,11 @@ function addTask() {
         input.value = ''
     }
 }
+
+function removeTask(index: number){
+    tasks.value.splice(index, 1)
+}
+
 </script>
 
 <template>
@@ -23,6 +28,9 @@ function addTask() {
             <BaseList class="">
                 <li v-for="(task, index) in tasks">
                     {{ index + 1 }}. {{ task }}
+                    <BaseButton @click="removeTask" rounded="full">
+                        <Icon name="solar:close-square-bold" width="24" height="24" />
+                    </BaseButton>
                 </li>
             </BaseList>
         </BaseCard>

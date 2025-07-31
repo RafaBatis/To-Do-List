@@ -22,11 +22,11 @@ function removeTask(index: number){
             <BaseInput v-model="input" type="text" placeholder="Crie uma tarefa aqui..." rounded="full" class=""/>
             <Icon name="solar:add-circle-line-duotone" class="size-10 cursor-pointer" @click="addTask"/>
         </BaseCard>
-        <BaseCard rounded="lg" class="w-full max-w-xl h-64 mt-2">
+        <BaseCard rounded="lg" class="nui-slimscroll w-full max-w-xl overflow-y-auto h-64 mt-2">
             <BaseList class="p-2">
-                <li v-for="(task, index) in tasks" class="flex items-center justify-between wrap-break-word">
-                    <p>{{ index + 1 }}. {{ task }}</p> 
-                    <Icon name="solar:close-square-bold" class="size-6 cursor-pointer" @click="removeTask(index)" />
+                <li v-for="(task, index) in tasks" class="flex items-center justify-between text-wrap">
+                    <p>{{ index + 1 }}. {{ task }}</p>
+                    <Icon name="solar:close-square-bold" class="size-6 cursor-pointer" @click="removeTask(index)"/>
                 </li>
             </BaseList>
         </BaseCard>

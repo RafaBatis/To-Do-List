@@ -22,7 +22,10 @@ function removeTask(index: number){
             <BaseInput v-model="input" type="text" placeholder="Crie uma tarefa aqui..." rounded="full" class=""/>
             <Icon name="solar:add-circle-line-duotone" class="size-10 cursor-pointer" @click="addTask"/>
         </BaseCard>
-        <BaseCard rounded="lg" class="nui-slimscroll w-full max-w-xl overflow-y-auto h-64 mt-2">
+        <BaseCard rounded="lg" class="nui-slimscroll w-full max-w-xl overflow-y-auto h-96 mt-2">
+            <div class="flex justify-between p-2">
+                <p> Tarefas Criadas <span class="bg-zinc-500 rounded-full px-2">{{ tasks.length }}</span> </p>
+            </div>
             <BaseList class="p-2">
                 <li v-for="(task, index) in tasks" class="flex items-center justify-between text-wrap">
                     <p>{{ index + 1 }}. {{ task }}</p>

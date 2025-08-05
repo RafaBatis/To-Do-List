@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 const input = ref('')
 const tasks = ref<string[]>([])
+const completed = ref<number[]>([])
 
 function addTask() {
     if (input.value.trim() !== '') {
@@ -12,6 +13,16 @@ function addTask() {
 }
 function removeTask(index: number){
     tasks.value.splice(index, 1)
+    completed.value.splice(index, 1)
+}
+function completedTask(index: number){
+    const a = completed.value.indexOf(index)
+    if (a === -1) {
+        completed.value.push(index)
+    }
+    else {
+        completed.value.splice(index, 1)
+    }
 }
 
 </script>
@@ -24,11 +35,14 @@ function removeTask(index: number){
         </BaseCard>
         <BaseCard rounded="lg" class="nui-slimscroll w-full max-w-xl overflow-y-auto h-96 mt-2">
             <div class="flex justify-between p-2">
-                <p> Tarefas Criadas <span class="bg-zinc-500 rounded-full px-2">{{ tasks.length }}</span> </p>
+                <p class="flex items-center gap-2"> Tarefas Criadas <span class="flex items-center justify-center bg-zinc-500 rounded-full text-sm px-2 py-0.5">{{ tasks.length }}</span> </p>
             </div>
             <BaseList class="p-2">
                 <li v-for="(task, index) in tasks" class="flex items-center justify-between text-wrap">
-                    <p>{{ index + 1 }}. {{ task }}</p>
+                    <div class="flex items-center gap-2">
+                    <Icon name="solar:check-circle-bold" class="size-6 cursor-pointer" @click="completedTask(index)"> </Icon>
+                    <p :class="{'line-through': completed.includes(index)}">{{ index + 1 }}. {{ task }}</p>
+                    </div>
                     <Icon name="solar:close-square-bold" class="size-6 cursor-pointer" @click="removeTask(index)"/>
                 </li>
             </BaseList>

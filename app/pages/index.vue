@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 const input = ref('')
 const tasks = ref<string[]>([])
-const completed = ref<number[]>([])
+const completed = ref<string[]>([])
 
 function addTask() {
     if (input.value.trim() !== '') {
@@ -16,12 +16,15 @@ function removeTask(index: number){
     completed.value.splice(index, 1)
 }
 function completedTask(index: number){
-    const a = completed.value.indexOf(index)
+    const task = tasks.value[index]
+    if (task === undefined) return
+    
+    const a = completed.value.indexOf(task)
     if (a === -1) {
-        completed.value.push(index)
+        completed.value.push(task)
     }
     else {
-        completed.value.splice(index, 1)
+        completed.value.splice(a, 1)
     }
 }
 
@@ -36,12 +39,13 @@ function completedTask(index: number){
         <BaseCard rounded="lg" class="nui-slimscroll w-full max-w-xl overflow-y-auto h-96 mt-2">
             <div class="flex justify-between p-2">
                 <p class="flex items-center gap-2"> Tarefas Criadas <span class="flex items-center justify-center bg-zinc-500 rounded-full text-sm px-2 py-0.5">{{ tasks.length }}</span> </p>
+                <p class="flex items-center gap-2">Tarefas concluídas <span class="flex items-center justify-center bg-zinc-500 rounded-full text-sm px-2 py-0.5">{{ completed.length }}</span> de <span class="flex items-center justify-center bg-zinc-500 rounded-full text-sm px-2 py-0.5">{{ tasks.length }}</span> </p>
             </div>
             <BaseList class="p-2">
                 <li v-for="(task, index) in tasks" class="flex items-center justify-between text-wrap">
                     <div class="flex items-center gap-2">
-                    <Icon name="solar:check-circle-bold" class="size-6 cursor-pointer" @click="completedTask(index)"> </Icon>
-                    <p :class="{'line-through': completed.includes(index)}">{{ index + 1 }}. {{ task }}</p>
+                    <Icon :name="completed.includes(task) ? 'solar:check-circle-bold' : 'solar:check-circle-line-duotone'" class="size-6 cursor-pointer" @click="completedTask(index)"> </Icon>
+                    <p :class="{'line-through': completed.includes(task)}">{{ index + 1 }}. {{ task }}</p>
                     </div>
                     <Icon name="solar:close-square-bold" class="size-6 cursor-pointer" @click="removeTask(index)"/>
                 </li>
